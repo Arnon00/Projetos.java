@@ -1,0 +1,14 @@
+package Bonus;
+
+import javax.swing.JPanel;
+
+public class Testes extends JPanel {
+
+	/**
+	 * Create the panel.
+	 */
+	public Testes() {
+
+	}
+
+}

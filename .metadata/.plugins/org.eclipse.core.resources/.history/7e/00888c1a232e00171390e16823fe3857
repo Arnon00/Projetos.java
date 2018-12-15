@@ -1,0 +1,50 @@
+package teste;
+
+import java.awt.EventQueue;
+
+import javax.swing.JInternalFrame;
+import javax.swing.JButton;
+import javax.swing.JTextArea;
+
+public class Cidades extends JInternalFrame {
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Cidades frame = new Cidades();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public Cidades() {
+		setMaximizable(true);
+		setClosable(true);
+		setIconifiable(true);
+		setTitle("Cidades");
+		setBounds(100, 100, 450, 300);
+		getContentPane().setLayout(null);
+		
+		JButton btnNewButton = new JButton("Sobre onitsha");
+		btnNewButton.setBounds(10, 11, 113, 23);
+		getContentPane().add(btnNewButton);
+		
+		JTextArea txtrTamanhok = new JTextArea();
+		txtrTamanhok.setLineWrap(true);
+		txtrTamanhok.setText("Tamanho :  36,19K\u00B2\r\nCria\u00E7\u00E3o : 1550\r\nContinente: Africano\r\nLocaliza\u00E7\u00E3o: 6.145, 6.788\r\nPopula\u00E7\u00E3o: 1109300 (2015) \r\nDensidade populacional:  5,030.8/km2\r\nPrefeito/Governante:  Obi  of Onitsha\r\nSobre o Pais.\r\n182,2 milh\u00F5es (2015)\r\nPIB do pais:  481,1 bilh\u00F5es USD (2015)\r\n");
+		txtrTamanhok.setBounds(20, 45, 320, 215);
+		getContentPane().add(txtrTamanhok);
+
+	}
+
+}

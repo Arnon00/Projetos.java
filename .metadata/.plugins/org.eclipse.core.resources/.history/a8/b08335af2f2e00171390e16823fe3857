@@ -1,0 +1,70 @@
+package teste;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.ImageIcon;
+import javax.swing.JTextArea;
+import javax.swing.JButton;
+import javax.swing.BoxLayout;
+import javax.swing.JTabbedPane;
+import javax.swing.AbstractAction;
+
+import java.awt.event.ActionEvent;
+
+import javax.swing.Action;
+
+import java.awt.event.ActionListener;
+
+public class SobreaCidade extends JFrame {
+	private final Action action = new SwingAction();
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					SobreaCidade frame = new SobreaCidade();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public SobreaCidade() {
+		
+		ImageIcon imgNigeria = new ImageIcon("C:/Users/Brack/Desktop/Nigeria.png");
+		
+		
+		
+		JButton btnNewButton = new JButton("New button", imgNigeria);
+		btnNewButton.setBounds(10, 11, 158, 112);
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		getContentPane().setLayout(null);
+		btnNewButton.setAction(action);
+		getContentPane().add(btnNewButton);
+	}
+
+	private class SwingAction extends AbstractAction {
+		public SwingAction() {
+			putValue(NAME, "SwingAction");
+			putValue(SHORT_DESCRIPTION, "Some short description");
+		}
+		public void actionPerformed(ActionEvent e) {
+		}
+	}
+}

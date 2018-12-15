@@ -1,0 +1,177 @@
+package aula_24_08;
+
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+
+import javax.swing.JFrame;
+
+public class Calculadora extends JFrame implements ActionListener, WindowListener {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3828558062216880873L;
+
+	public Calculadora() {
+	}
+	
+// Criando Objeto = teclado;
+	Panel pn = new Panel();
+
+// Criando Objeto = TextField (Campo de texto); 	
+	TextField fn = new TextField();
+
+// Criando Objeto = Botões;
+	Button b1 = new Button("1");
+	Button b2 = new Button("2");
+	Button b3 = new Button("3");
+	Button b4 = new Button("4");  
+	Button b5 = new Button("5");
+	Button b6 = new Button("6");
+	Button b7 = new Button("7");
+	Button b8 = new Button("8");
+	Button b9 = new Button("9");
+	Button b0 = new Button("0");
+	Button bmais = new Button("+");
+	Button bmenos = new Button("-");
+	Button bvezes = new Button("*");	
+	Button bdivi = new Button("/");
+	Button bponto = new Button(".");
+	Button bC = new Button("c");
+	Button bigual = new Button("=");
+	
+// Criando Metodo = responsavel por abrir a janela;	
+	public void janela(){
+		
+		// setando as dimençoes da janela principal;
+		this.setBounds(150,150,300,350);
+		this.setTitle("Calculadora");
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//fechar no menu...
+		// setando a posição do Textfild (campo de texto)
+		fn.setBounds(50,50,50,50);
+		this.add("North",fn);
+		
+		// setando a posição do teclado na janela principal;
+		this.add("Center",pn);
+		
+		// setando a posição do bota de igual na janela principal; 
+		this.add("South",bigual);
+		
+		// Adicionando o teclado a janela principal;
+		this.teclado();
+		
+		//tornando a janela principal e seus componentes vesiveis;
+		this.setVisible(true);
+		
+		b1.addActionListener(this);
+		b2.addActionListener(this);
+		b3.addActionListener(this);
+		b4.addActionListener(this);
+		b5.addActionListener(this);
+		b6.addActionListener(this);
+		b7.addActionListener(this);
+		b8.addActionListener(this);
+		b9.addActionListener(this);
+		b0.addActionListener(this);
+		bmais.addActionListener(this);
+		bmenos.addActionListener(this);
+		bvezes.addActionListener(this);
+		bdivi.addActionListener(this);
+		bponto.addActionListener(this);
+		bC.addActionListener(this);
+		bigual.addActionListener(this);
+		
+	}
+	
+// Criando Metodo = responsavel pelo teclado;		
+	public void teclado(){
+		
+		// transformando o Lanout de Panel para Grid de 4x4
+		
+		pn.setLayout(new GridLayout(4, 4));
+		
+		// Adicionando os botoes na ordem: esquerda > direita de cima > baixo;
+		
+		pn.add(b1);
+		pn.add(b2);
+		pn.add(b3);
+		pn.add(bC);
+		
+		pn.add(b4);
+		pn.add(b5);
+		pn.add(b6);
+		pn.add(bmais);
+		
+		pn.add(b7);
+		pn.add(b8);
+		pn.add(b9);
+		pn.add(bmenos);
+		
+		pn.add(b0);
+		pn.add(bvezes);
+		pn.add(bdivi);
+		pn.add(bponto);
+		
+		
+	}
+
+	public void acoes(ActionEvent e){
+		
+		Object obj = e.getSource();
+		
+		if (obj.equals(b1)){
+			fn.setText("1");
+		}
+}
+
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowActivated(WindowEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowClosed(WindowEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowClosing(WindowEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowDeactivated(WindowEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowDeiconified(WindowEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowIconified(WindowEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowOpened(WindowEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+}

@@ -1,0 +1,200 @@
+package Cliente;
+
+//importaçoes 
+import java.io.*;
+import java.net.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.*;
+
+public class Client extends JFrame{
+			boolean limp = true;
+	/*1*/	private JTextField enterField;
+	/*2*/	private JTextArea displayArea;
+	/*3*/	private ObjectOutputStream output;
+	/*4*/	private ObjectInputStream input;
+	/*5*/	private String mensagem = "";
+	/*6*/	private String chatServer;
+	/*7*/	private Socket client;
+	/*8*/   private Icon enviar;	
+	/*9*/	private Icon sair;
+	
+	// pegando do sistema o nome de Ussuario no PC;
+	private String nomeUsser = System.getProperty("user.name");
+	
+	// Inicia o chat e configura o GUI
+	public Client(String host){
+		
+		super ("Cliente");
+		getContentPane().setEnabled(false);	
+		//confugura o servidor
+		
+		/*6*/ chatServer = host;
+			  Container container = getContentPane();
+			  getContentPane().setLayout(null);
+			  
+			  JButton btn_Emoti = new JButton("Emoti");
+			  btn_Emoti.addActionListener(new ActionListener() {
+			  	public void actionPerformed(ActionEvent e) {
+			  		Emoji tss = new Emoji();
+			  	}
+			  });
+			  btn_Emoti.setBounds(475, 315, 18, 21);
+			  getContentPane().add(btn_Emoti);
+			  enterField = new JTextField();
+			  enterField.setBounds(5, 317, 460, 41);
+			  getContentPane().add(enterField);
+			  enterField.setEnabled(false);
+			  enterField.addActionListener(
+			  										new ActionListener(){
+			  											//envia msgns para o servidor
+			  											public void actionPerformed(ActionEvent event){
+			  												if (limp == true){
+			  													displayArea.setText("");
+			  													limp = false;
+			  												}
+			  												sendData(event.getActionCommand());
+			  											//alternativa para apagar o texto apos a digitação;
+			  												enterField.setText("");
+			  											}
+			  										} // fim da classe externa anonima;
+			  									 );
+			  
+			  JScrollPane scrollPane_1 = new JScrollPane();
+			  scrollPane_1.setBounds(5, 5, 574, 303);
+			  getContentPane().add(scrollPane_1);
+			  displayArea = new JTextArea();
+			  scrollPane_1.setViewportView(displayArea);
+			  displayArea.setWrapStyleWord(true);
+			  
+			  
+			  JButton btn_Enviar = new JButton(enviar);
+			  btn_Enviar.addActionListener(			
+					  
+			  										new ActionListener(){
+			  											
+			  											//envia msgns para o servidor com o botão envio
+			  											public void actionPerformed(ActionEvent event){
+			  												if (limp == true){
+			  													displayArea.setText("");
+			  													limp = false;
+			  												}
+			  												sendData(enterField.getText());
+			  											//alternativa para apagar o texto apos a digitação;
+			  												enterField.setText("");	  												
+			  											}
+			  										} // fim da classe externa anonima;
+			  									 );
+			  btn_Enviar.setBounds(494, 315, 85, 21);
+			  btn_Enviar.setAlignmentY(Component.BOTTOM_ALIGNMENT);
+			  btn_Enviar.setVerticalAlignment(SwingConstants.BOTTOM);
+			  getContentPane().add(btn_Enviar);
+			  btn_Enviar.setText("Enviar");
+			  
+			  JButton btn_Sair = new JButton(sair);
+			  btn_Sair.addActionListener(
+					  new ActionListener(){
+						  public void actionPerformed(ActionEvent arg0) {
+							  try {
+								  
+								  //fechando a conexão... Ainda com alguns problemas... 
+								  // sendData("\n\n Conexão encerrada pelo cliente");
+								  closeConnection();
+								  System.exit(0);
+							  	}catch (IOException e) {
+								  e.printStackTrace();
+			  								   }	
+						  }
+					  }
+					);
+			  
+			  btn_Sair.setBounds(475, 338, 104, 20);
+			  btn_Sair.setAlignmentY(3.0f);
+			  getContentPane().add(btn_Sair);
+			  btn_Sair.setVerticalAlignment(SwingConstants.BOTTOM);
+			  btn_Sair.setText("Sair");
+			  setSize(600, 400);
+			  setVisible(true);
+	}
+	
+	// conexão e processamento
+	
+	public void runClient(){
+		//conecta ao servidor, obtem fluxos, processa conexão
+		try{
+			//Cria socket para conexão
+			connectToServer();
+			//Fluxos de entrada e saida  
+			getStreams();
+			//processa a conexão
+			processConnection();
+			//fecha a conexão
+			closeConnection();
+		   }catch(EOFException eofException)
+				 {
+			   		System.out.println("O Servidor finalizou a conexão");
+		   		 }catch(IOException ioException)
+					   {
+		   			     ioException.printStackTrace();
+		   		       }
+	}
+	
+	//Obtendo fluxo para envio e recebimento
+	private void getStreams() throws IOException{
+		//confg fluxo de saida
+		/*3*/output = new ObjectOutputStream(/*7*/client.getOutputStream());
+		/*3*/output.flush(); // descarga de buffer
+		/*4*/input = new ObjectInputStream(/*7*/client.getInputStream());
+		/*2*/displayArea.append("\n go I/O streams\n");
+	}
+	
+	//conexão servidor
+	private void connectToServer() throws IOException{
+		/*2*/displayArea.setText("tentando coxão com o servidor \n");
+		
+		// cria socket para conexão 
+		/*7*/client = new Socket(InetAddress.getByName(/*6*/chatServer),5000);
+		
+		//exibe informaçoes sobre conexão
+		/*2*/displayArea.append("Conectado a: "+/*7*/client.getInetAddress().getHostName());
+	}
+	
+	//Processamento da conexão 
+	private void processConnection() throws IOException{
+		//Habilite EnterFild
+		/*1*/enterField.setEnabled(true);
+		
+		//processamento de msgns do servidor
+		do{
+			//tenta ler a msg e exibir
+			try{
+				/*5*/mensagem = (String) /*4*/input.readObject();
+				/*2*/displayArea.append("\n "+ mensagem);
+				/*2*/displayArea.setCaretPosition(/*2*/displayArea.getText().length());				
+				}catch(ClassNotFoundException classNFException){
+						/*2*/displayArea.append("\n Objeto desconhecido recebido");
+					}
+		}while(/*5*/!mensagem.equals(nomeUsser+" diz: TERMINATE"));
+	}
+	
+	// fechar fluxo de e soquete
+	private void closeConnection() throws IOException{
+		/*2*/displayArea.append("\nConexão Encerrada.");
+		/*8*/client.close();
+		/*4*/input.close();
+		/*3*/output.close();
+
+	}
+	
+	private void sendData(String mensagem){
+		//enviar objto para servidor
+		try{
+			/*3*/output.writeObject("\n"+nomeUsser+" diz: "+ mensagem);
+			/*3*/output.flush();
+			/*2*/displayArea.append("\n"+nomeUsser+" diz: "+ mensagem);
+		   }catch(IOException ioException){
+			   		displayArea.append("Erro ao enviar Mensagem");
+		   		   }
+	}
+}

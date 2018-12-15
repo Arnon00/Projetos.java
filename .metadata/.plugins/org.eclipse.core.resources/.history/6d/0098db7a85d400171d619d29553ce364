@@ -1,0 +1,5 @@
+package bean;
+
+public class Capitulo_livro_bean {
+
+}

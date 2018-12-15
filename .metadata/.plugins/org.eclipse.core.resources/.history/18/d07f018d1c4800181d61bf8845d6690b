@@ -1,0 +1,110 @@
+package Cliente;
+
+import javax.swing.JPanel;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+import javax.swing.JInternalFrame;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
+public class Testes extends JPanel {
+
+	/**
+	 * Create the panel.
+	 */
+	public Testes() {
+		setLayout(null);
+		
+		JLabel label = new JLabel("(\u30C4)");
+		label.setHorizontalAlignment(SwingConstants.CENTER);
+		label.setBounds(10, 47, 51, 14);
+		add(label);
+		
+		JLabel label_1 = new JLabel("\u00AF\\_(\u30C4)_/\u00AF");
+		label_1.setHorizontalAlignment(SwingConstants.CENTER);
+		label_1.setBounds(10, 22, 51, 14);
+		add(label_1);
+		
+		JLabel lblNewLabel_1 = new JLabel("(\u30C4)\u256D\u2229\u256E");
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1.setBounds(10, 72, 51, 14);
+		add(lblNewLabel_1);
+		
+		JLabel label_2 = new JLabel("( \u0361\u00B0 \u035C\u0296 \u0361\u00B0)");
+		label_2.setHorizontalAlignment(SwingConstants.CENTER);
+		label_2.setBounds(195, 22, 46, 14);
+		add(label_2);
+		
+		JLabel label_4 = new JLabel("( \u0360\u00B0 \u035F\u0296 \u0361\u00B0) ");
+		label_4.setHorizontalAlignment(SwingConstants.CENTER);
+		label_4.setBounds(195, 47, 46, 14);
+		add(label_4);
+		
+		JLabel label_5 = new JLabel("( \u0361~ \u035C\u0296 \u0361\u00B0)");
+		label_5.setHorizontalAlignment(SwingConstants.CENTER);
+		label_5.setBounds(195, 72, 46, 14);
+		add(label_5);
+		
+		JLabel lblmm = new JLabel("\\m/ (\u25E3_\u25E2) \\m/");
+		lblmm.setHorizontalAlignment(SwingConstants.CENTER);
+		lblmm.setBounds(81, 22, 79, 14);
+		add(lblmm);
+		
+		JLabel label_6 = new JLabel("\u2229\u0D6C\u2229(\u25E3_\u25E2)\u2229\u0D6C\u2229");
+		label_6.setHorizontalAlignment(SwingConstants.CENTER);
+		label_6.setBounds(73, 47, 99, 14);
+		add(label_6);
+		
+		JLabel label_7 = new JLabel("\t\u2517\u251B(\u25E3_\u25E2)\u2517\u251B");
+		label_7.setHorizontalAlignment(SwingConstants.CENTER);
+		label_7.setBounds(81, 72, 79, 14);
+		add(label_7);
+		
+		JLabel lblo = new JLabel("( \u0361o \u035C\u0296 \u0361o)  ");
+		lblo.setHorizontalAlignment(SwingConstants.CENTER);
+		lblo.setBounds(195, 97, 46, 14);
+		add(lblo);
+		
+		JLabel lblNewLabel = new JLabel("( \u0361\u0361 \u00B0 \u035C \u0296 \u0361 \u00B0)\uFEFF ");
+		lblNewLabel.setBounds(15, 97, 46, 14);
+		add(lblNewLabel);
+		
+		JLabel label_3 = new JLabel("(\u0E07 \u0360\u00B0 \u035F\u0644\u035C \u0361\u00B0)\u0E07 ");
+		label_3.setBounds(276, 97, 64, 14);
+		add(label_3);
+		
+		JLabel label_8 = new JLabel("( \u0361\u1D54 \u035C\u0296 \u0361\u1D54 )  ");
+		label_8.setHorizontalAlignment(SwingConstants.CENTER);
+		label_8.setBounds(367, 97, 46, 14);
+		add(label_8);
+		
+		JLabel label_9 = new JLabel("\u30FE(\u2310\u25A0_\u25A0)\u30CE\u266A  ");
+		label_9.setBounds(261, 47, 79, 14);
+		add(label_9);
+		
+		JLabel label_10 = new JLabel("(\u0E07'\u0300-'\u0301)\u0E07");
+		label_10.setBounds(276, 22, 46, 14);
+		add(label_10);
+		
+		JLabel label_11 = new JLabel("(\uFF89\u25D5\u30EE\u25D5)\uFF89*:\uFF65\uFF9F\u2727");
+		label_11.setBounds(357, 22, 69, 14);
+		add(label_11);
+		
+		JLabel label_12 = new JLabel("\u1559(\u21C0\u2038\u21BC\u2036)\u1557");
+		label_12.setBounds(357, 47, 69, 14);
+		add(label_12);
+		
+		JLabel label_13 = new JLabel("(~\u02D8\u25BE\u02D8)~");
+		label_13.setBounds(104, 97, 46, 14);
+		add(label_13);
+		
+		JLabel label_14 = new JLabel("\\ (\u2022\u25E1\u2022) /");
+		label_14.setBounds(274, 72, 46, 14);
+		add(label_14);
+		
+		JLabel label_15 = new JLabel("\u25D5 \u203F\u203F \u25D5");
+		label_15.setBounds(367, 72, 46, 14);
+		add(label_15);
+
+	}
+}

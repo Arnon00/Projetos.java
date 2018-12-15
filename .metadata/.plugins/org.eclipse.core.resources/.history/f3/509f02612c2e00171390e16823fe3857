@@ -1,0 +1,59 @@
+package teste;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JTabbedPane;
+
+public class Newnova extends JFrame {
+
+	private JPanel contentPane;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Newnova frame = new Newnova();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public Newnova() {
+		setTitle("Onitsha");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setLayout(new BorderLayout(0, 0));
+		setContentPane(contentPane);
+		
+		JTabbedPane Sobre12 = new JTabbedPane(JTabbedPane.TOP);
+		contentPane.add(Sobre12, BorderLayout.CENTER);
+		
+		JTabbedPane Sobre = new JTabbedPane(JTabbedPane.TOP);
+		Sobre12.addTab("Sobre", null, Sobre, null);
+		
+		JTabbedPane Informações = new JTabbedPane(JTabbedPane.TOP);
+		Sobre12.addTab("Informacões", null, tabbedPane_2, null);
+		
+		JTabbedPane Mapa = new JTabbedPane(JTabbedPane.TOP);
+		Sobre12.addTab("Mapa", null, tabbedPane_3, null);
+		
+		JTabbedPane Nada ainda = new JTabbedPane(JTabbedPane.TOP);
+		Sobre12.addTab("Nada ainda", null, tabbedPane_4, null);
+	}
+
+}

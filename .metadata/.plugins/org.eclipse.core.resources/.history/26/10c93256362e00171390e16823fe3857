@@ -1,0 +1,177 @@
+package teste;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JButton;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JTextField;
+
+public class EntradaPorpais extends JFrame {
+
+	private JPanel contentPane;
+	private JTextField txtNigeria;
+	private JTextField txtIran;
+	private JTextField txtBahrein;
+	private JTextField txtChina;
+	private JTextField txtIr;
+	private JTextField txtBrasil;
+	private JTextField txtAfeganisto;
+	private JTextField txtArabiaSaudita;
+	private JTextField txtPaquisto;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					EntradaPorpais frame = new EntradaPorpais();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public EntradaPorpais() {
+		setTitle("As 20 cidades mais poluidas do mundo - Por pa\u00EDs");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 830, 540);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		ImageIcon ImagemNigeria = new ImageIcon("C:/Users/Brack/Desktop/Nigeria.png");
+		
+		JButton btnNewButton = new JButton(ImagemNigeria);
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Onitsha Sc = new Onitsha();
+				
+				Sc.setVisible(true);
+			}
+		});
+		btnNewButton.setBounds(35, 33, 133, 119);
+		contentPane.add(btnNewButton);
+		
+		txtNigeria = new JTextField();
+		txtNigeria.setEditable(false);
+		txtNigeria.setText("Nigeria");
+		txtNigeria.setBounds(35, 11, 86, 20);
+		contentPane.add(txtNigeria);
+		txtNigeria.setColumns(10);
+		
+		ImageIcon ImagemIndia = new ImageIcon("C:/Users/Brack/Desktop/India.png");
+		JButton btnNewButton_1 = new JButton(ImagemIndia);
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnNewButton_1.setBounds(35, 180, 133, 119);
+		contentPane.add(btnNewButton_1);
+		
+		ImageIcon ImagemBehien = new ImageIcon("C:/Users/Brack/Desktop/Behien.png");
+		JButton btnNewButton_2 = new JButton(ImagemBehien);
+		btnNewButton_2.setBounds(32, 341, 133, 119);
+		contentPane.add(btnNewButton_2);
+		
+		ImageIcon ImagemChina = new ImageIcon("C:/Users/Brack/Desktop/China.png");
+		JButton btnNewButton_3 = new JButton(ImagemChina);
+		btnNewButton_3.setBounds(223, 33, 133, 119);
+		contentPane.add(btnNewButton_3);
+		
+		ImageIcon ImagemIran = new ImageIcon("C:/Users/Brack/Desktop/Iran.png");
+		JButton btnNewButton_4 = new JButton(ImagemIran);
+		btnNewButton_4.setBounds(223, 180, 133, 119);
+		contentPane.add(btnNewButton_4);
+		
+		ImageIcon ImagemBrasil = new ImageIcon("C:/Users/Brack/Desktop/Brazil.png");
+		JButton btnNewButton_5 = new JButton(ImagemBrasil);
+		btnNewButton_5.setBounds(420, 341, 133, 119);
+		contentPane.add(btnNewButton_5);
+		
+		txtIran = new JTextField();
+		txtIran.setEditable(false);
+		txtIran.setText("Iran");
+		txtIran.setBounds(35, 159, 86, 20);
+		contentPane.add(txtIran);
+		txtIran.setColumns(10);
+		
+		txtBahrein = new JTextField();
+		txtBahrein.setEditable(false);
+		txtBahrein.setText("Bahrein");
+		txtBahrein.setBounds(35, 320, 86, 20);
+		contentPane.add(txtBahrein);
+		txtBahrein.setColumns(10);
+		
+		txtChina = new JTextField();
+		txtChina.setEditable(false);
+		txtChina.setText("China");
+		txtChina.setBounds(223, 11, 86, 20);
+		contentPane.add(txtChina);
+		txtChina.setColumns(10);
+		
+		txtIr = new JTextField();
+		txtIr.setEditable(false);
+		txtIr.setText("Ir\u00E3");
+		txtIr.setBounds(223, 159, 86, 20);
+		contentPane.add(txtIr);
+		txtIr.setColumns(10);
+		
+		txtBrasil = new JTextField();
+		txtBrasil.setEditable(false);
+		txtBrasil.setText("Brasil");
+		txtBrasil.setBounds(420, 320, 86, 20);
+		contentPane.add(txtBrasil);
+		txtBrasil.setColumns(10);
+		
+		ImageIcon ImagemArabia = new ImageIcon("C:/Users/Brack/Desktop/Arabia.png");
+		JButton btnNewButton_6 = new JButton(ImagemArabia);
+		btnNewButton_6.setBounds(420, 33, 133, 119);
+		contentPane.add(btnNewButton_6);
+		
+		ImageIcon ImagemPaquistao = new ImageIcon("C:/Users/Brack/Desktop/Paquistao.png");
+		JButton btnNewButton_7 = new JButton(ImagemPaquistao);
+		btnNewButton_7.setBounds(420, 180, 133, 119);
+		contentPane.add(btnNewButton_7);
+		
+		ImageIcon ImagemAfaganistao = new ImageIcon("C:/Users/Brack/Desktop/Afeganistao.png");
+		JButton btnNewButton_8 = new JButton(ImagemAfaganistao);
+		btnNewButton_8.setBounds(223, 341, 133, 119);
+		contentPane.add(btnNewButton_8);
+		
+		txtAfeganisto = new JTextField();
+		txtAfeganisto.setEditable(false);
+		txtAfeganisto.setText("Afeganist\u00E3o");
+		txtAfeganisto.setBounds(223, 320, 86, 20);
+		contentPane.add(txtAfeganisto);
+		txtAfeganisto.setColumns(10);
+		
+		txtArabiaSaudita = new JTextField();
+		txtArabiaSaudita.setEditable(false);
+		txtArabiaSaudita.setText("Arabia saudita");
+		txtArabiaSaudita.setBounds(420, 11, 86, 20);
+		contentPane.add(txtArabiaSaudita);
+		txtArabiaSaudita.setColumns(10);
+		
+		txtPaquisto = new JTextField();
+		txtPaquisto.setEditable(false);
+		txtPaquisto.setText("Paquist\u00E3o");
+		txtPaquisto.setBounds(420, 159, 86, 20);
+		contentPane.add(txtPaquisto);
+		txtPaquisto.setColumns(10);
+	}
+}

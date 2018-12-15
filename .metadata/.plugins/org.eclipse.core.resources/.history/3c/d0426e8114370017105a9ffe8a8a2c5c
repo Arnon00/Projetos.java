@@ -1,0 +1,420 @@
+package Aps;
+
+import java.awt.BorderLayout;
+import java.awt.Desktop;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JButton;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JRadioButtonMenuItem;
+import javax.swing.JMenuItem;
+import javax.swing.ImageIcon;
+
+import java.awt.Toolkit;
+
+import javax.swing.JPopupMenu;
+
+import java.awt.Component;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+
+import java.awt.Font;
+import java.net.URI;
+
+public class Principal extends JFrame {
+
+	private JPanel contentPane;
+	private JTextField txtParaVisualizarA;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Principal frame = new Principal();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public Principal() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Principal.class.getResource("/Imagens/planeta terra.jpg")));
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 1091, 715);
+		
+		JMenuBar menuBar = new JMenuBar();
+		setJMenuBar(menuBar);
+		
+		JMenu mnNewMenu = new JMenu("New menu");
+		menuBar.add(mnNewMenu);
+		
+		JMenuItem mntmNewMenuItem = new JMenuItem("Grupo APS");
+		mntmNewMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Infos_Grupo Infg = new Infos_Grupo();
+				
+				Infg.setVisible(true);
+			}
+		});
+		mnNewMenu.add(mntmNewMenuItem);
+		
+		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Sobre...");
+		mntmNewMenuItem_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Infos_Sobre Isbr = new Infos_Sobre();
+				
+				Isbr.setVisible(true);
+			}
+		});
+		mnNewMenu.add(mntmNewMenuItem_1);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JButton btnAfeganistao = new JButton("Afeganistao");
+		btnAfeganistao.setIcon(new ImageIcon(Principal.class.getResource("/Imagens/Afeganistao.png")));
+		btnAfeganistao.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Pais_Afeganistao Pafe = new Pais_Afeganistao();
+				
+				Pafe.setVisible(true);
+			}
+		});
+		btnAfeganistao.setBounds(73, 331, 240, 125);
+		contentPane.add(btnAfeganistao);
+		
+		JPopupMenu popupMenu_2 = new JPopupMenu();
+		addPopup(btnAfeganistao, popupMenu_2);
+		
+		JLabel lblAfeganisto = new JLabel("");
+		lblAfeganisto.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				try {
+					
+					URI link = new URI("https://www.google.com.br/maps/place/Afeganist%C3%A3o/@33.6242756,58.7012849,5z/data=!3m1!4b1!4m5!3m4!1s0x38d16eb6f8ff026d:0xf3b5460dbe96da78!8m2!3d33.93911!4d67.709953");
+					Desktop.getDesktop().browse(link); 
+					
+				}catch(Exception erro){
+					System.out.println("Deu ruim isis!");
+					
+				}
+			}
+		});
+		lblAfeganisto.setIcon(new ImageIcon(Principal.class.getResource("/Imagens/Globo/Afghanistan.globo.png")));
+		popupMenu_2.add(lblAfeganisto);
+		
+		JButton btnArabia = new JButton("Arabia");
+		btnArabia.setIcon(new ImageIcon(Principal.class.getResource("/Imagens/Arabia.png")));
+		btnArabia.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Pais_Arabia Para = new Pais_Arabia();
+				
+				Para.setVisible(true);
+			}
+		});
+		btnArabia.setBounds(634, 45, 240, 125);
+		contentPane.add(btnArabia);
+		
+		JPopupMenu popupMenu_6 = new JPopupMenu();
+		addPopup(btnArabia, popupMenu_6);
+		
+		JLabel lblArabia = new JLabel("");
+		lblArabia.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				try {
+					
+					URI link = new URI("https://www.google.com.br/maps/place/Ar%C3%A1bia+Saudita/@23.0827551,26.8665722,4z/data=!3m1!4b1!4m5!3m4!1s0x15e7b33fe7952a41:0x5960504bc21ab69b!8m2!3d23.885942!4d45.079162");
+					Desktop.getDesktop().browse(link); 
+					
+				}catch(Exception erro){
+					System.out.println("Deu ruim zé, AlakAgbar!");
+					
+				}
+			}
+		});
+		lblArabia.setIcon(new ImageIcon(Principal.class.getResource("/Imagens/Globo/Saudi_Arabia.globo.png")));
+		popupMenu_6.add(lblArabia);
+		
+		JButton btnBahrein = new JButton("Bahrein");
+		btnBahrein.setIcon(new ImageIcon(Principal.class.getResource("/Imagens/Behien.png")));
+		btnBahrein.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Pais_bahrein Pbha = new Pais_bahrein();
+				
+				Pbha.setVisible(true);
+			}
+		});
+		btnBahrein.setBounds(355, 45, 239, 125);
+		contentPane.add(btnBahrein);
+		
+		JPopupMenu popupMenu_3 = new JPopupMenu();
+		addPopup(btnBahrein, popupMenu_3);
+		
+		JLabel lblBahrein = new JLabel("");
+		lblBahrein.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				try {
+					
+					URI link = new URI("https://www.google.com.br/maps/place/Bahrein/@25.9554647,50.3213109,10z/data=!3m1!4b1!4m5!3m4!1s0x3e48524e6a47a211:0x2e9450e2dbda1046!8m2!3d26.0667!4d50.5577");
+					Desktop.getDesktop().browse(link); 
+					
+				}catch(Exception erro){
+					System.out.println("Deu ruim, com o país com nome de cerveja");
+					
+				}
+			}
+		});
+		lblBahrein.setIcon(new ImageIcon(Principal.class.getResource("/Imagens/Globo/Bahrain.globo.png")));
+		popupMenu_3.add(lblBahrein);
+		
+		JButton btnBrasil = new JButton("Brasil");
+		btnBrasil.setIcon(new ImageIcon(Principal.class.getResource("/Imagens/Brazil.png")));
+		btnBrasil.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Pais_Brasil Pbra = new Pais_Brasil();
+				
+				Pbra.setVisible(true);
+			}
+		});
+		btnBrasil.setBounds(634, 331, 240, 125);
+		contentPane.add(btnBrasil);
+		
+		JPopupMenu popupMenu_8 = new JPopupMenu();
+		addPopup(btnBrasil, popupMenu_8);
+		
+		JLabel lblBrasil = new JLabel("");
+		lblBrasil.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				try {
+					
+					URI link = new URI("https://www.google.com.br/maps/place/Brasil/@-11.058193,-90.4808357,3z/data=!3m1!4b1!4m5!3m4!1s0x9c59c7ebcc28cf:0x295a1506f2293e63!8m2!3d-14.235004!4d-51.92528");
+					Desktop.getDesktop().browse(link); 
+					
+				}catch(Exception erro){
+					System.out.println("ta ligado, algo de certo esta errado!");
+					
+				}
+			}
+		});
+		lblBrasil.setIcon(new ImageIcon(Principal.class.getResource("/Imagens/Globo/Brasil.globo.png")));
+		popupMenu_8.add(lblBrasil);
+		
+		JButton btnChina = new JButton("China");
+		btnChina.setIcon(new ImageIcon(Principal.class.getResource("/Imagens/China.png")));
+		btnChina.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Pais_China Pchi = new Pais_China();
+				
+				Pchi.setVisible(true);
+			}
+		});
+		btnChina.setBounds(634, 191, 240, 125);
+		contentPane.add(btnChina);
+		
+		JPopupMenu popupMenu_7 = new JPopupMenu();
+		addPopup(btnChina, popupMenu_7);
+		
+		JLabel lblChina = new JLabel("");
+		lblChina.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				try {
+					
+					URI link = new URI("https://www.google.com.br/maps/place/China/@30.2067973,67.5448431,3z/data=!3m1!4b1!4m5!3m4!1s0x31508e64e5c642c1:0x951daa7c349f366f!8m2!3d35.86166!4d104.195397");
+					Desktop.getDesktop().browse(link); 
+					
+				}catch(Exception erro){
+					System.out.println("Deu ruim zé-chan!");
+					
+				}
+			}
+		});
+		lblChina.setIcon(new ImageIcon(Principal.class.getResource("/Imagens/Globo/China.globo.png")));
+		popupMenu_7.add(lblChina);
+		
+		JButton btnIndia = new JButton("India");
+		btnIndia.setIcon(new ImageIcon(Principal.class.getResource("/Imagens/India.png")));
+		btnIndia.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Pais_India Pind = new Pais_India();
+				
+				Pind.setVisible(true);
+			}
+		});
+		btnIndia.setBounds(73, 45, 240, 125);
+		contentPane.add(btnIndia);
+		
+		JPopupMenu popupMenu = new JPopupMenu();
+		addPopup(btnIndia, popupMenu);
+		
+		JLabel lblIndia = new JLabel("A parte em verde claro representa o territ\u00F3rio disputado da Caxemira (que inclui reivindica\u00E7\u00F5es de Paquist\u00E3o e China)");
+		lblIndia.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				try {
+					
+					URI link = new URI("https://www.google.com.br/maps/dir//%C3%8Dndia/@20.0916442,79.4322351,5.75z/data=!4m16!1m7!3m6!1s0x30635ff06b92b791:0xd78c4fa1854213a6!2zw41uZGlh!3b1!8m2!3d20.593684!4d78.96288!4m7!1m0!1m5!1m1!1s0x30635ff06b92b791:0xd78c4fa1854213a6!2m2!1d78.96288!2d20.593684");
+					Desktop.getDesktop().browse(link); 
+					
+				}catch(Exception erro){
+					System.out.println("Deu ruim, Esquece a India!");
+					
+				}
+			}
+		});
+		lblIndia.setHorizontalAlignment(SwingConstants.CENTER);
+		lblIndia.setToolTipText("");
+		lblIndia.setIcon(new ImageIcon(Principal.class.getResource("/Imagens/Globo/India.globo.png")));
+		popupMenu.add(lblIndia);
+		
+		JButton btnIran = new JButton("Iran");
+		btnIran.setIcon(new ImageIcon(Principal.class.getResource("/Imagens/Iran.png")));
+		btnIran.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Pais_Iran Pira = new Pais_Iran();
+				
+				Pira.setVisible(true);
+			}
+		});
+		btnIran.setBounds(73, 191, 240, 125);
+		contentPane.add(btnIran);
+		
+		JPopupMenu popupMenu_1 = new JPopupMenu();
+		addPopup(btnIran, popupMenu_1);
+		
+		JLabel lblIran = new JLabel("");
+		lblIran.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				try {
+					
+					URI link = new URI("https://www.google.com.br/maps/place/Ir%C3%A3o/@32.1184132,44.6776991,5z/data=!3m1!4b1!4m5!3m4!1s0x3ef7ec2ec16b1df1:0x40b095d39e51face!8m2!3d32.427908!4d53.688046");
+					Desktop.getDesktop().browse(link); 
+					
+				}catch(Exception erro){
+					System.out.println("Deu ruim zézinho sheik, !");
+					
+				}
+			}
+		});
+		lblIran.setIcon(new ImageIcon(Principal.class.getResource("/Imagens/Globo/Iran.globo.png")));
+		popupMenu_1.add(lblIran);
+		
+		JButton btnNigeria = new JButton("Nigeria");
+		btnNigeria.setIcon(new ImageIcon(Principal.class.getResource("/Imagens/Nigeria.png")));
+		btnNigeria.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Pais_Nigeria Pnig = new Pais_Nigeria();
+				
+				Pnig.setVisible(true);
+			}
+		});
+		btnNigeria.setBounds(354, 331, 240, 125);
+		contentPane.add(btnNigeria);
+		
+		JPopupMenu popupMenu_5 = new JPopupMenu();
+		addPopup(btnNigeria, popupMenu_5);
+		
+		JLabel lblNigeria = new JLabel("");
+		lblNigeria.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				try {
+					
+					URI link = new URI("https://www.google.com.br/maps/place/Nig%C3%A9ria/@8.9886566,-0.3617646,5z/data=!3m1!4b1!4m5!3m4!1s0x104e0baf7da48d0d:0x99a8fe4168c50bc8!8m2!3d9.081999!4d8.675277");
+					Desktop.getDesktop().browse(link); 
+					
+				}catch(Exception erro){
+					System.out.println("Deu ruim... hum...!");
+					
+				}
+			}
+		});
+		lblNigeria.setIcon(new ImageIcon(Principal.class.getResource("/Imagens/Globo/Nigeria.globo.png")));
+		popupMenu_5.add(lblNigeria);
+		
+		JButton btnPaquistao = new JButton("Paquistao");
+		btnPaquistao.setIcon(new ImageIcon(Principal.class.getResource("/Imagens/Paquistao.png")));
+		btnPaquistao.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Pais_Paquistao Ppaq = new Pais_Paquistao();
+				
+				Ppaq.setVisible(true);
+			}
+		});
+		btnPaquistao.setBounds(354, 191, 240, 125);
+		contentPane.add(btnPaquistao);
+		
+		JPopupMenu popupMenu_4 = new JPopupMenu();
+		addPopup(btnPaquistao, popupMenu_4);
+		
+		JLabel lblPaquisto = new JLabel("");
+		lblPaquisto.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				try {
+					
+					URI link = new URI("https://www.google.com.br/maps/place/Paquist%C3%A3o/@30.1024894,60.3428123,5z/data=!3m1!4b1!4m5!3m4!1s0x38db52d2f8fd751f:0x46b7a1f7e614925c!8m2!3d30.375321!4d69.345116");
+					Desktop.getDesktop().browse(link); 
+					
+				}catch(Exception erro){
+					System.out.println("Deu ruim zé das areias!");
+					
+				}
+			}
+		});
+		lblPaquisto.setIcon(new ImageIcon(Principal.class.getResource("/Imagens/Globo/Paquistao.globo.png")));
+		popupMenu_4.add(lblPaquisto);
+		
+		txtParaVisualizarA = new JTextField();
+		txtParaVisualizarA.setFont(new Font("Trebuchet MS", Font.PLAIN, 11));
+		txtParaVisualizarA.setEditable(false);
+		txtParaVisualizarA.setHorizontalAlignment(SwingConstants.LEFT);
+		txtParaVisualizarA.setText("Para visualizar a localiza\u00E7\u00E3o de cada pa\u00EDs no globo, clique com o bot\u00E3o direito sobre a bandeira. clicando sobre o mapa, voc\u00EA sera redirecionado para o navegador");
+		txtParaVisualizarA.setBounds(10, 606, 818, 39);
+		contentPane.add(txtParaVisualizarA);
+		txtParaVisualizarA.setColumns(10);
+	}
+	private static void addPopup(Component component, final JPopupMenu popup) {
+		component.addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent e) {
+				if (e.isPopupTrigger()) {
+					showMenu(e);
+				}
+			}
+			public void mouseReleased(MouseEvent e) {
+				if (e.isPopupTrigger()) {
+					showMenu(e);
+				}
+			}
+			private void showMenu(MouseEvent e) {
+				popup.show(e.getComponent(), e.getX(), e.getY());
+			}
+		});
+	}
+}

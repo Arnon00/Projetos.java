@@ -1,0 +1,52 @@
+package teste;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JTextArea;
+
+public class SobreaCidade extends JFrame {
+
+	private JPanel contentPane;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					SobreaCidade frame = new SobreaCidade();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public SobreaCidade() {
+		setTitle("Sobre a cidade");
+		setOpacity(1);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 440, 502);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JTextArea txtCidadeinfos = new JTextArea();
+		txtCidadeinfos.setEditable(false);
+		txtCidadeinfos.setLineWrap(true);
+		txtCidadeinfos.setText("A maior parte da polui\u00E7\u00E3o do ar de Onitsha vem \r\nde nuvens de fuma\u00E7a de diesel emitidas de navios \r\nantigos ancorados nas docas da cidade. \r\nSem um sistema apropriado de incinera\u00E7\u00E3o \r\ne com um dos maiores \u00EDndices de congestionamento \r\nurbano da Nig\u00E9ria, a qualidade do ar chegou a n\u00EDveis assustadores. \r\nOnitsha gera 600 microgramas de material particulado PM10s por metro c\u00FAbico, \r\ncerca de 30 vezes mais do que a recomenda\u00E7\u00E3o da OMS de 20mg por metro c\u00FAbico.");
+		txtCidadeinfos.setBounds(0, 0, 424, 464);
+		contentPane.add(txtCidadeinfos);
+	}
+
+}

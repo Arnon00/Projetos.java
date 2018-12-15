@@ -1,0 +1,119 @@
+package chatsimples; //pacote exprtado com as configurações do chat
+//imports necessários para a conexão
+import java.io.IOException;
+import java.net.DatagramPacket;//arquivos .java.net fazem a comunicação entre as máquinas
+import java.net.DatagramSocket; // os sockets viabilizam a comunicação entre cliente e servidor
+import java.net.InetAddress;  //optém os endereçços das máquinas que pertencem à comunicação.
+import java.net.SocketException;
+import java.net.UnknownHostException;
+import java.util.Observable; //padrão obervador (padrões de projeto java)
+import java.util.logging.Level;
+import java.util.logging.Logger ;//controla quem utiliza as o chat, bem como as suas respectivas informações.
+
+public class Conexao extends Observable {  // a classe conexão estende o padrão obeservador.
+// no padrão observador a cada mudança de estado ele notifica aqueles que estão Observando sua instância
+    private String ip; //aqui deverá ser informado o IP da máquina com quem deseja estabelecee comunicação, e na outra máquina o seu IP
+    private int porta; //aqui deverá ser informada a porta
+    private String mensagem; //aqui seráinformada a mensagem
+
+    public Conexao(String ip, int porta) { //o método público para "chamar" a conexão
+        this.ip = ip; //objeto IP já instanciado
+        this.porta = porta; //objeto porta  já instanciado
+        new Thread(new Recebe()).start(); //permite iniciar o "funcionamento" da thread
+    }
+
+    public String getMensagem() { //método para chamar a mensagem que estava encapsulada.
+        return mensagem; //ao criar o método get retorna ele mesmo.
+    }
+
+    public String getIp() { //método para chamar o IP que estava esncapsulado
+        return ip;  //retorna o IP
+    }
+
+    public int getPorta() {  //método para chamar a porta que estava esncapsulado
+        return porta; //retorna a porta
+    }
+
+    public void envia(String texto) { //cria o método para enviar mensagens do tipo string (texto)
+        new Thread(new Envia(texto)).start();//a thread inicia o envio de mensagens.
+    }
+
+    public void notifica(String mensagem) { //método que notifica quando há uma nova mensagem.
+        this.mensagem = mensagem; //chama o atributo encapsulado mensagem.
+        setChanged(); //configura a mudança de status
+        notifyObservers(); //notifica os "observadores"
+    }
+
+    class Recebe implements Runnable { //classe para receber mensagens.
+
+        byte[] dadosReceber = new byte[255]; //cria vetor capaz de "receber" os dados
+        boolean erro = false; //flag em caso de overflow
+        DatagramSocket socket = null; //socket vazio para receber o texto
+
+
+        public void run() { //método para "correr o aplicativo"
+            while (true) { //condições para que o chat continue em execução.
+                try { //inicia o tratamento de exceção.
+                    socket = new DatagramSocket(getPorta()); //o socket pega as informações da porta
+                } catch (SocketException ex) { //exceção para tratar o erro
+                    Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, ex); //pega as informações do usuário para iniciar o tratamento;
+                }
+                erro = false;
+                while (!erro) {  //enquanto for diferente de erro, ou seja enquanto estiver funcionando normalmente.
+                    DatagramPacket pacoteRecebido = new DatagramPacket(dadosReceber, dadosReceber.length);//pega as informações da mensagem recebida.
+                    try { //esse try não é para erro
+                        socket.receive(pacoteRecebido); //socket para receber mensagens.
+                        byte[] b = pacoteRecebido.getData(); //este vetor vai receber os dados e armazená-los
+                        String s = ""; //string para pegar as palavras das mensagens.
+                        for (int i = 0; i < b.length; i++) { //laço para fazer isso até acabar a mensagem.
+                            if (b[i] != 0) { //vê a posição do vetor.
+
+                                s += (char) b[i]; //incrementa o mesmo conforme o que é lido.
+                            }
+                        }
+                        String nome = pacoteRecebido.getAddress().toString() + " disse:"; //pega o endereço de quem mandou + disse + mensagem.
+                        notifica(nome + s); //notifca a pessoa que há uma nova mensagem.
+                    } catch (Exception e) { //caso não der certo :(
+                        System.out.println("erro"); //imprime a mensagem de erro.
+                        try {
+                            Thread.sleep(100); //desliga a thread
+                        } catch (InterruptedException ex) { //continua tratando a exceção.
+                            Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, ex); // dados do usuário do programa
+                        }
+                        erro = true; //erro classificado como verdadeiro e continua o programa.
+                        continue;
+                    }
+                }
+            }
+        }
+    }
+
+    class Envia implements Runnable { //classe para enviar mensagens.
+
+        String texto; //string para enviar as mensagens.
+
+        public Envia(String texto) { //método envia que vai chamar o texto.
+            this.texto = texto; // chama o texto.
+        }
+
+
+        public void run() { //método para "correr" a aplicação.
+
+            byte[] dados = texto.getBytes(); //vetor que vai capturar os dados.
+
+            try { //inicia o tratamento
+                DatagramSocket clientSocket = new DatagramSocket(); //cria um novo datagrama
+                InetAddress addr = InetAddress.getByName(getIp()); //inet para as configurações de rede
+                DatagramPacket pacote = new DatagramPacket(dados, dados.length, addr, getPorta()); //pega todas as informações do pacote para transmissão.
+                clientSocket.send(pacote); //envia o pacote
+                clientSocket.close(); //fecha o socket
+            } catch (SocketException ex) { //trata a exceção.
+                Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, ex); //tratametos para possíveis erros no socket.
+            } catch (UnknownHostException ex) { //tratamento para possíveis erros no host.
+                Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) { //trata exceções em geral.
+                Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+} 

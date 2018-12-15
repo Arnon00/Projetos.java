@@ -1,0 +1,436 @@
+package Cliente;
+
+//importaçoes 
+import java.io.*;
+import java.net.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+public class Client extends JFrame{
+			boolean limp = true;
+	/*1*/	private JTextField enterField;
+	/*2*/	private JTextArea displayArea;
+	/*3*/	private ObjectOutputStream output;
+	/*4*/	private ObjectInputStream input;
+	/*5*/	private String mensagem = "";
+	/*6*/	private String chatServer;
+	/*7*/	private Socket client;
+	/*8*/   private Icon enviar;	
+	/*9*/	private Icon sair;
+	
+	// pegando do sistema o nome de Ussuario no PC;
+	private String nomeUsser = System.getProperty("user.name");
+	
+	// Inicia o chat e configura o GUI
+	public Client(String host){
+	
+		super ("Cliente");
+		getContentPane().setEnabled(false);	
+		//confugura o servidor
+		
+		/*6*/ chatServer = host;
+			  Container container = getContentPane();
+			  getContentPane().setLayout(null);
+			  
+			  JButton btn_Emoti = new JButton("Emoti");
+			  btn_Emoti.setBounds(475, 315, 18, 21);
+			  getContentPane().add(btn_Emoti);
+			  
+			  JPopupMenu popupMenu = new JPopupMenu();
+			  addPopup(btn_Emoti, popupMenu);
+			  
+			  JPanel panel = new JPanel();
+			  popupMenu.add(panel);
+			  
+			  JLabel label_1 = new JLabel("(\u30C4)");
+			  label_1.addMouseListener(new MouseAdapter() {
+			  	@Override
+			  	public void mouseClicked(MouseEvent arg0) {
+			  		enterField.setText(enterField.getText()+"(\u30C4)");
+			  	}
+			  });
+				panel.setLayout(new GridLayout(5, 5, 5, 5));
+				label_1.setHorizontalAlignment(SwingConstants.CENTER);
+				label_1.setBounds(10, 47, 51, 14);
+				panel.add(label_1);
+			  
+
+				JLabel label_2 = new JLabel("\u00AF\\_(\u30C4)_/\u00AF");
+				label_2.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						enterField.setText(enterField.getText()+"\u00AF\\_(\u30C4)_/\u00AF");
+					}
+				});
+				label_2.setHorizontalAlignment(SwingConstants.CENTER);
+				label_2.setBounds(10, 22, 51, 14);
+				panel.add(label_2);
+				
+				JLabel label_3 = new JLabel("(\u30C4)\u256D\u2229\u256E");
+				label_3.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						enterField.setText(enterField.getText()+"(\u30C4)\u256D\u2229\u256E");
+					}
+				});
+				label_3.setHorizontalAlignment(SwingConstants.CENTER);
+				label_3.setBounds(10, 72, 51, 14);
+				panel.add(label_3);
+				
+				JLabel label_4 = new JLabel("( \u0361\u00B0 \u035C\u0296 \u0361\u00B0)");
+				label_4.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						enterField.setText("( \u0361\u00B0 \u035C\u0296 \u0361\u00B0)");
+					}
+				});
+				label_4.setHorizontalAlignment(SwingConstants.CENTER);
+				label_4.setBounds(195, 22, 46, 14);
+				panel.add(label_4);
+				
+				JLabel label_5 = new JLabel("( \u0360\u00B0 \u035F\u0296 \u0361\u00B0) ");
+				label_5.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						enterField.setText("( \u0360\u00B0 \u035F\u0296 \u0361\u00B0) ");
+					}
+				});
+				label_5.setHorizontalAlignment(SwingConstants.CENTER);
+				label_5.setBounds(195, 47, 46, 14);
+				panel.add(label_5);
+				
+				JLabel label_6 = new JLabel("( \u0361~ \u035C\u0296 \u0361\u00B0)");
+				label_6.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						enterField.setText("( \u0361~ \u035C\u0296 \u0361\u00B0)");
+					}
+				});
+				label_6.setHorizontalAlignment(SwingConstants.CENTER);
+				label_6.setBounds(195, 72, 46, 14);
+				panel.add(label_6);
+				
+				JLabel label_7 = new JLabel("\\m/ (\u25E3_\u25E2) \\m/");
+				label_7.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						enterField.setText("\\m/ (\u25E3_\u25E2) \\m/");
+					}
+				});
+				label_7.setHorizontalAlignment(SwingConstants.CENTER);
+				label_7.setBounds(81, 22, 79, 14);
+				panel.add(label_7);
+				
+				JLabel label_8 = new JLabel("\u2229\u0D6C\u2229(\u25E3_\u25E2)\u2229\u0D6C\u2229");
+				label_8.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						enterField.setText("\u2229\u0D6C\u2229(\u25E3_\u25E2)\u2229\u0D6C\u2229");
+					}
+				});
+				label_8.setHorizontalAlignment(SwingConstants.CENTER);
+				label_8.setBounds(73, 47, 99, 14);
+				panel.add(label_8);
+				
+				JLabel label_9 = new JLabel("\t\u2517\u251B(\u25E3_\u25E2)\u2517\u251B");
+				label_9.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						enterField.setText("\u2517\u251B(\u25E3_\u25E2)\u2517\u251B");
+					}
+				});
+				label_9.setHorizontalAlignment(SwingConstants.CENTER);
+				label_9.setBounds(81, 72, 79, 14);
+				panel.add(label_9);
+				
+				JLabel label_10 = new JLabel("( \u0361o \u035C\u0296 \u0361o)  ");
+				label_10.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						enterField.setText("( \u0361o \u035C\u0296 \u0361o)  ");
+					}
+				});
+				label_10.setHorizontalAlignment(SwingConstants.CENTER);
+				label_10.setBounds(195, 97, 46, 14);
+				panel.add(label_10);
+				
+				JLabel label_11 = new JLabel("( \u0361\u0361 \u00B0 \u035C \u0296 \u0361 \u00B0)\uFEFF ");
+				label_11.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						enterField.setText("( \u0361\u0361 \u00B0 \u035C \u0296 \u0361 \u00B0)\uFEFF ");
+					}
+				});
+				label_11.setBounds(15, 97, 46, 14);
+				panel.add(label_11);
+				
+				JLabel label_12 = new JLabel("(\u0E07 \u0360\u00B0 \u035F\u0644\u035C \u0361\u00B0)\u0E07 ");
+				label_12.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						enterField.setText("(\u0E07 \u0360\u00B0 \u035F\u0644\u035C \u0361\u00B0)\u0E07 ");
+					}
+				});
+				label_12.setBounds(276, 97, 64, 14);
+				panel.add(label_12);
+				
+				JLabel label_13 = new JLabel("( \u0361\u1D54 \u035C\u0296 \u0361\u1D54 )  ");
+				label_13.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						enterField.setText("( \u0361\u1D54 \u035C\u0296 \u0361\u1D54 )  ");
+					}
+				});
+				label_13.setHorizontalAlignment(SwingConstants.CENTER);
+				label_13.setBounds(367, 97, 46, 14);
+				panel.add(label_13);
+				
+				JLabel label_14 = new JLabel("\u30FE(\u2310\u25A0_\u25A0)\u30CE\u266A  ");
+				label_14.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						enterField.setText("\u30FE(\u2310\u25A0_\u25A0)\u30CE\u266A  ");
+					}
+				});
+				label_14.setBounds(261, 47, 79, 14);
+				panel.add(label_14);
+				
+				JLabel label_15 = new JLabel("(\u0E07'\u0300-'\u0301)\u0E07");
+				label_15.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						enterField.setText("(\u0E07'\u0300-'\u0301)\u0E07");
+					}
+				});
+				label_15.setBounds(276, 22, 46, 14);
+				panel.add(label_15);
+				
+				JLabel label_16 = new JLabel("(\uFF89\u25D5\u30EE\u25D5)\uFF89*:\uFF65\uFF9F\u2727");
+				label_16.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						enterField.setText("(\uFF89\u25D5\u30EE\u25D5)\uFF89*:\uFF65\uFF9F\u2727");
+					}
+				});
+				label_16.setBounds(357, 22, 69, 14);
+				panel.add(label_16);
+				
+				JLabel label_17 = new JLabel("\u1559(\u21C0\u2038\u21BC\u2036)\u1557");
+				label_17.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						enterField.setText("\u1559(\u21C0\u2038\u21BC\u2036)\u1557");
+					}
+				});
+				label_17.setBounds(357, 47, 69, 14);
+				panel.add(label_17);
+				
+				JLabel label_18 = new JLabel("(~\u02D8\u25BE\u02D8)~");
+				label_18.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						enterField.setText("(~\u02D8\u25BE\u02D8)~");
+					}
+				});
+				label_18.setBounds(104, 97, 46, 14);
+				panel.add(label_18);
+				
+				JLabel label_19 = new JLabel("\\ (\u2022\u25E1\u2022) /");
+				label_19.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						enterField.setText("\\ (\u2022\u25E1\u2022) /");
+					}
+				});
+				label_19.setBounds(274, 72, 46, 14);
+				panel.add(label_19);
+				
+				JLabel label_20 = new JLabel("\u25D5 \u203F\u203F \u25D5");
+				label_20.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						enterField.setText("\u25D5 \u203F\u203F \u25D5");
+					}
+				});
+				label_20.setBounds(367, 72, 46, 14);
+				panel.add(label_20);
+			 
+			  
+			  enterField = new JTextField();
+			  enterField.setBounds(5, 317, 460, 41);
+			  getContentPane().add(enterField);
+			  enterField.setEnabled(false);
+			  enterField.addActionListener(
+			  										new ActionListener(){
+			  											//envia msgns para o servidor
+			  											public void actionPerformed(ActionEvent event){
+			  												if (limp == true){
+			  													displayArea.setText("");
+			  													limp = false;
+			  												}
+			  												sendData(event.getActionCommand());
+			  											//alternativa para apagar o texto apos a digitação;
+			  												enterField.setText("");
+			  											}
+			  										} // fim da classe externa anonima;
+			  									 );
+			  
+			  JScrollPane scrollPane_1 = new JScrollPane();
+			  scrollPane_1.setBounds(5, 5, 574, 303);
+			  getContentPane().add(scrollPane_1);
+			  displayArea = new JTextArea();
+			  scrollPane_1.setViewportView(displayArea);
+			  displayArea.setWrapStyleWord(true);
+			  
+			  
+			  JButton btn_Enviar = new JButton(enviar);
+			  btn_Enviar.addActionListener(			
+					  
+			  										new ActionListener(){
+			  											
+			  											//envia msgns para o servidor com o botão envio
+			  											public void actionPerformed(ActionEvent event){
+			  												if (limp == true){
+			  													displayArea.setText("");
+			  													limp = false;
+			  												}
+			  												sendData(enterField.getText());
+			  											//alternativa para apagar o texto apos a digitação;
+			  												enterField.setText("");	  												
+			  											}
+			  										} // fim da classe externa anonima;
+			  									 );
+			  btn_Enviar.setBounds(494, 315, 85, 21);
+			  btn_Enviar.setAlignmentY(Component.BOTTOM_ALIGNMENT);
+			  btn_Enviar.setVerticalAlignment(SwingConstants.BOTTOM);
+			  getContentPane().add(btn_Enviar);
+			  btn_Enviar.setText("Enviar");
+			  
+			  JButton btn_Sair = new JButton(sair);
+			  btn_Sair.addActionListener(
+					  new ActionListener(){
+						  public void actionPerformed(ActionEvent arg0) {
+							  try {
+								  
+								  //fechando a conexão... Ainda com alguns problemas... 
+								  // sendData("\n\n Conexão encerrada pelo cliente");
+								  closeConnection();
+								  System.exit(0);
+							  	}catch (IOException e) {
+								  e.printStackTrace();
+			  								   }	
+						  }
+					  }
+					);
+			  
+			  btn_Sair.setBounds(475, 338, 104, 20);
+			  btn_Sair.setAlignmentY(3.0f);
+			  getContentPane().add(btn_Sair);
+			  btn_Sair.setVerticalAlignment(SwingConstants.BOTTOM);
+			  btn_Sair.setText("Sair");
+			  setSize(600, 400);
+			  setVisible(true);
+	}
+	
+	// conexão e processamento
+	
+	public void runClient(){
+		//conecta ao servidor, obtem fluxos, processa conexão
+		try{
+			//Cria socket para conexão
+			connectToServer();
+			//Fluxos de entrada e saida  
+			getStreams();
+			//processa a conexão
+			processConnection();
+			//fecha a conexão
+			closeConnection();
+		   }catch(EOFException eofException)
+				 {
+			   		System.out.println("O Servidor finalizou a conexão");
+		   		 }catch(IOException ioException)
+					   {
+		   			     ioException.printStackTrace();
+		   		       }
+	}
+	
+	//Obtendo fluxo para envio e recebimento
+	private void getStreams() throws IOException{
+		//confg fluxo de saida
+		/*3*/output = new ObjectOutputStream(/*7*/client.getOutputStream());
+		/*3*/output.flush(); // descarga de buffer
+		/*4*/input = new ObjectInputStream(/*7*/client.getInputStream());
+		/*2*/displayArea.append("\n go I/O streams\n");
+	}
+	
+	//conexão servidor
+	private void connectToServer() throws IOException{
+		/*2*/displayArea.setText("tentando coxão com o servidor \n");
+		
+		// cria socket para conexão 
+		/*7*/client = new Socket(InetAddress.getByName(/*6*/chatServer),5000);
+		
+		//exibe informaçoes sobre conexão
+		/*2*/displayArea.append("Conectado a: "+/*7*/client.getInetAddress().getHostName());
+	}
+	
+	//Processamento da conexão 
+	private void processConnection() throws IOException{
+		//Habilite EnterFild
+		/*1*/enterField.setEnabled(true);
+		
+		//processamento de msgns do servidor
+		do{
+			//tenta ler a msg e exibir
+			try{
+				/*5*/mensagem = (String) /*4*/input.readObject();
+				/*2*/displayArea.append("\n "+ mensagem);
+				/*2*/displayArea.setCaretPosition(/*2*/displayArea.getText().length());				
+				}catch(ClassNotFoundException classNFException){
+						/*2*/displayArea.append("\n Objeto desconhecido recebido");
+					}
+		}while(/*5*/!mensagem.equals(nomeUsser+" diz: TERMINATE"));
+	}
+	
+	// fechar fluxo de e soquete
+	private void closeConnection() throws IOException{
+		/*2*/displayArea.append("\nConexão Encerrada.");
+		/*8*/client.close();
+		/*4*/input.close();
+		/*3*/output.close();
+
+	}
+	
+	private void sendData(String mensagem){
+		//enviar objto para servidor
+		try{
+			/*3*/output.writeObject("\n"+nomeUsser+" diz: "+ mensagem);
+			/*3*/output.flush();
+			/*2*/displayArea.append("\n"+nomeUsser+" diz: "+ mensagem);
+		   }catch(IOException ioException){
+			   		displayArea.append("Erro ao enviar Mensagem");
+		   		   }
+	}
+	private static void addPopup(Component component, final JPopupMenu popup) {
+		component.addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent e) {
+				if (e.isPopupTrigger()) {
+					showMenu(e);
+				}
+			}
+			public void mouseReleased(MouseEvent e) {
+				if (e.isPopupTrigger()) {
+					showMenu(e);
+				}
+			}
+			private void showMenu(MouseEvent e) {
+				popup.show(e.getComponent(), e.getX(), e.getY());
+			}
+		});
+	}
+	
+}

@@ -1,0 +1,91 @@
+package teste;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.JLabel;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+import javax.swing.SwingConstants;
+
+import java.awt.Color;
+
+import javax.swing.JTextPane;
+import javax.swing.JTextArea;
+import javax.swing.Box;
+import javax.swing.AbstractAction;
+import javax.swing.Action;
+
+public class Aprendendo extends JFrame {
+	
+	private JPanel contentPane;
+	private final Action action = new SwingAction();
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Aprendendo frame = new Aprendendo();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public Aprendendo() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JButton SobreaCidade = new JButton("Sobre Onitsha");
+		SobreaCidade.setAction(action);
+		SobreaCidade.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				SobreaCidade Sc = new SobreaCidade();
+				SobreaCidade.add(Sc);
+				Sc.setVisible(true);
+				
+			}
+		});
+		SobreaCidade.setBounds(10, 11, 117, 23);
+		contentPane.add(SobreaCidade);
+		
+		JTextArea txtrAMaiorParte = new JTextArea();
+		txtrAMaiorParte.setEditable(false);
+		txtrAMaiorParte.setLineWrap(true);
+		txtrAMaiorParte.setText("Tamanho :  36,19K\u00B2\r\nCria\u00E7\u00E3o : 1550\r\nContinente: Africano\r\nLocaliza\u00E7\u00E3o: 6.145, 6.788\r\nPopula\u00E7\u00E3o: 1109300 (2015) \r\nDensidade populacional:  5,030.8/km2\r\nPrefeito/Governante:  Obi  of Onitsha\r\nSobre o Pais.\r\n182,2 milh\u00F5es (2015)\r\nPIB do pais:  481,1 bilh\u00F5es USD (2015)\r\n");
+		txtrAMaiorParte.setBounds(20, 45, 317, 206);
+		contentPane.add(txtrAMaiorParte);
+		
+		Box verticalBox = Box.createVerticalBox();
+		verticalBox.setBounds(286, 45, 1, 1);
+		contentPane.add(verticalBox);
+	}
+	private class SwingAction extends AbstractAction {
+		public SwingAction() {
+			putValue(NAME, "SwingAction");
+			putValue(SHORT_DESCRIPTION, "Some short description");
+		}
+		public void actionPerformed(ActionEvent e) {
+		}
+	}
+}

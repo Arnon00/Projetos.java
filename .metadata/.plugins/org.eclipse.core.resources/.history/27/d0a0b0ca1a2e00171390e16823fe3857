@@ -1,0 +1,81 @@
+package teste;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.JLabel;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.SwingConstants;
+import java.awt.Color;
+import javax.swing.JTextPane;
+import javax.swing.JTextArea;
+import javax.swing.Box;
+
+public class Aprendendo extends JFrame {
+
+	private JPanel contentPane;
+	/**
+	 * @wbp.nonvisual location=622,39
+	 */
+	private final JTextArea txtCidadeinfos = new JTextArea();
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Aprendendo frame = new Aprendendo();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public Aprendendo() {
+		txtCidadeinfos.setWrapStyleWord(true);
+		txtCidadeinfos.setToolTipText("");
+		txtCidadeinfos.setText("A maior parte da polui\u00E7\u00E3o do ar de Onitsha \r\nvem de nuvens de fuma\u00E7a de diesel emitidas \r\nde navios antigos ancorados nas docas da cidade.\r\nSem um sistema apropriado de incinera\u00E7\u00E3o \r\ne com um dos maiores \u00EDndices de congestionamento \r\nurbano da Nig\u00E9ria, a qualidade do ar chegou a n\u00EDveis assustadores. \r\nOnitsha gera 600 microgramas de material particulado \r\nPM10s por metro c\u00FAbico, cerca de 30 vezes mais do \r\nque a recomenda\u00E7\u00E3o da OMS de 20mg por metro c\u00FAbico.");
+		txtCidadeinfos.setLineWrap(true);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JButton btnAba = new JButton("Onitsha");
+		btnAba.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				JOptionPane.showMessageDialog(null	, "Nome" +txtCidadeinfos.getText());
+			}
+		});
+		btnAba.setBounds(10, 11, 89, 23);
+		contentPane.add(btnAba);
+		
+		JTextArea txtrAMaiorParte = new JTextArea();
+		txtrAMaiorParte.setLineWrap(true);
+		txtrAMaiorParte.setText("Tamanho :  36,19K\u00B2\r\nCria\u00E7\u00E3o : 1550\r\nContinente: Africano\r\nLocaliza\u00E7\u00E3o: 6.145, 6.788\r\nPopula\u00E7\u00E3o: 1109300 (2015) \r\nDensidade populacional:  5,030.8/km2\r\nPrefeito/Governante:  Obi  of Onitsha\r\nSobre o Pais.\r\n182,2 milh\u00F5es (2015)\r\nhttp://www.indexmundi.com/g/g.aspx?v=21&c=ni&l=pt\r\nPIB do pais:  481,1 bilh\u00F5es USD (2015)\r\n");
+		txtrAMaiorParte.setBounds(20, 45, 217, 206);
+		contentPane.add(txtrAMaiorParte);
+		
+		Box verticalBox = Box.createVerticalBox();
+		verticalBox.setBounds(286, 45, 1, 1);
+		contentPane.add(verticalBox);
+	}
+}

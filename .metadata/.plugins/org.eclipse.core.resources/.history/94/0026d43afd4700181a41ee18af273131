@@ -1,0 +1,169 @@
+package Server;
+
+// importaçoes : Nucleos 
+import java.io.*;
+import java.net.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+// importaçoes : Extençoes 
+import javax.swing.*;
+
+public class Server extends JFrame {
+
+// Numeração para facilitar a localização de alguns trechos e ligaçoes, CUIDADO;
+	
+/*1*/	private JTextField enterField;
+/*2*/	private JTextArea displayArea;
+/*3*/	private ObjectOutputStream output;
+/*4*/	private ObjectInputStream input;
+/*5*/	private ServerSocket server;
+/*6*/	private Socket connection;
+/*7*/	private int counter = 2;
+//*8*/   private JButton enviar;	
+//*9*/	private JButton sair;
+
+// configuração do GUI 
+public Server(){
+	super("Servidor (janela Principal)");
+	
+	Container container = getContentPane();
+	
+// Criação da entrada de texto e registro da escuta
+
+	/*1*/ enterField = new JTextField();
+	/*1*/ enterField.setEnabled(false);
+	/*1*/ enterField.addActionListener(
+										new ActionListener(){
+										//Enviar Msg para o cliente.
+										 public void actionPerformed(ActionEvent event)
+										  {
+											sendData(event.getActionCommand());
+											//alternativa para apagar o texto apos a digitação;
+											enterField.setText("");
+										   }
+										 }// fechamento classe interna anonima
+										);// fechamento chamada para Action
+		container.add(/*1*/enterField,BorderLayout.SOUTH);
+		
+// Display
+		/*2*/displayArea = new JTextArea();
+		container.add(new JScrollPane(/*2*/displayArea), BorderLayout.CENTER);
+		setSize(600,400);  // Tamanho
+		setVisible(true);  // Visibilidade
+	}
+
+//Configuração e execução do servidor
+ public void runServer(){
+	 // Configurando o recebimento e procesamento de conexões
+	 
+	 try{
+		 //Criando 
+		 /*5*/server = new ServerSocket(5000, 7);
+		 while(true)
+		 	{
+		 		//esperando conexão 
+			 	waitForConnection();
+			 	
+			 	//Fluxos de entrada e saida
+			 	getStreams();
+			 	
+			 	//processa a conexão
+			 	processConnection();
+			 	
+			 	//Fecha a conexão
+			 	closeConnection();
+			 	
+			 	/*7*/++counter;
+		 	}
+		 }catch(EOFException eoException)
+	 		   {
+			 	eoException.printStackTrace();
+	 		   }catch(IOException ioException)
+	 				 {
+	 			      ioException.printStackTrace();
+	 				 }
+	 	}
+ 
+ // esperando a conexão e msgns
+ private void waitForConnection() throws IOException{
+	 /*2*/displayArea.setText("Sem conexões ativas\n");
+	 
+	 // Aceitando uma conexão
+	 /*6*/connection = /*5*/server.accept();
+	 
+	 /*2*/displayArea.append("Conexão: "+ /*7*/counter+ " Recebida de: "+ /*6*/connection.getInetAddress().getHostName());
+  }
+ 
+ //Obtendo fluxos  de envio e recebimento
+ 
+ private void getStreams()throws IOException {
+	 //Fluxo de saida
+	 /*3*/output = new ObjectOutputStream(/*6*/connection.getOutputStream());
+	 
+	//Descarga de buffer
+	 /*3*/output.flush();
+	 
+	 //fluxo de entrega para Objetos
+	 /*4*/input = new ObjectInputStream(/*6*/connection.getInputStream());
+	 /*2*/displayArea.append("\nGo I/O Stxream \n");
+  }
+ 	
+ //Processo de conexão com o cliente 
+ 
+ private void processConnection() throws IOException {
+	 //envia msg de conexão estabelecida para cliente
+	 String mensagem = "Você esta em contato com o Servidor agora.";
+	 /*3*/output.writeObject(mensagem);
+	 /*3*/output.flush();  // prepara o cliente para recebimento de dados.
+	 
+	 //Habilita o envio de Msgns do ussuario;
+	 /*1*/enterField.setEnabled(true);
+	 
+	 // Processa a msgn enviada do cliente
+	 do{
+		 //Lê e exibe a msg
+		 try{
+			  mensagem = (String) input.readObject();  // Le o objeto enviado pelo cliente 
+			  /*2*/displayArea.append("\n"+mensagem);  // exibe o mesmo na TextArea
+			  /*2*/displayArea.setCaretPosition(/*2*/displayArea.getText().length()); // posiciona o cursor de entrada na TextArea, oque acarreta na rolaem da mesma 
+		 	}catch(ClassNotFoundException classNotFound){
+		 			/*2*/displayArea.append("Tipo de Objeto desconehcido recebido"); 	
+		 		 }
+	 } while(!mensagem.equals("sair")); // repetira esse trecho ate que o cliente envie esta mensagem;
+ }
+ 
+ //Fecha o fluxo do socket
+  private void closeConnection()throws IOException {
+	  /*2*/displayArea.append("Conexão encerrada pelo ussuario");
+	  /*1*/enterField.setEnabled(false);
+	  /*3*/output.close();
+	  /*4*/input.close();
+	  /*6*/connection.close();
+  }
+  
+  //Enviar msgns para o cliente
+  private void sendData(String mensagem){  // Envia o objeto String para o cliente, esvazia o buffer de saida e acrecenta o mesmo String a TextArea na janela servidor;
+	  //envio de objetos
+	  try{
+		  /*3*/output.writeObject("Servidor diz: "+ mensagem);
+		  /*3*/output.flush();
+		  /*2*/displayArea.append("\nServidor diz: "+ mensagem);
+	  	 }catch(IOException ioException){
+	  		 	/*2*/displayArea.append("Erro ao escrever Objeto");
+	  	 		 }
+  }
+ /*
+  //Main
+  public static void main(String args[]){
+  	Server application = new Server();
+  	
+  	application.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+  	
+  	application.runServer();
+  
+  } 
+ */
+}
+

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.eclipse.jdt.launching.localJavaApplication">
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
+<listEntry value="/Projeto_Acervo 2.0/src/Model/DAO/MangaDAO.java"/>
+</listAttribute>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
+<listEntry value="1"/>
+</listAttribute>
+<stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="Model.DAO.MangaDAO"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="Projeto_Acervo 2.0"/>
+</launchConfiguration>

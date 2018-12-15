@@ -1,0 +1,94 @@
+package aula_24_08;
+
+import java.awt.*;
+
+import javax.swing.JFrame;
+
+public class Calculadora extends JFrame {
+	public Calculadora() {
+	}
+	
+// Criando Objeto = teclado;
+	Panel pn = new Panel();
+
+// Criando Objeto = TextField (Campo de texto); 	
+	TextField fn = new TextField();
+
+// Criando Objeto = Botões;
+	Button b1 = new Button("1");
+	Button b2 = new Button("2");
+	Button b3 = new Button("3");
+	Button b4 = new Button("4");  
+	Button b5 = new Button("5");
+	Button b6 = new Button("6");
+	Button b7 = new Button("7");
+	Button b8 = new Button("8");
+	Button b9 = new Button("9");
+	Button b0 = new Button("0");
+	Button bmais = new Button("+");
+	Button bmenos = new Button("-");
+	Button bvezes = new Button("*");	
+	Button bdivi = new Button("/");
+	Button bponto = new Button(".");
+	Button bC = new Button("c");
+	Button bigual = new Button("=");
+	
+// Criando Metodo = responsavel por abrir a janela;	
+	public void janela(){
+		
+		// setando as dimençoes da janela principal;
+		this.setBounds(150,150,300,350);
+		this.setTitle("Calculadora");
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//fechar no menu...
+		// setando a posição do Textfild (campo de texto)
+		fn.setBounds(50,50,50,50);
+		this.add("North",fn);
+		
+		// setando a posição do teclado na janela principal;
+		this.add("Center",pn);
+		
+		// setando a posição do bota de igual na janela principal; 
+		this.add("South",bigual);
+		
+		// Adicionando o teclado a janela principal;
+		this.teclado();
+		
+		//tornando a janela principal e seus componentes vesiveis;
+		this.setVisible(true);
+		
+	}
+	
+// Criando Metodo = responsavel pelo teclado;		
+	public void teclado(){
+		
+		// transformando o Lanout de Panel para Grid de 4x4
+		
+		pn.setLayout(new GridLayout(4, 4));
+		
+		// Adicionando os botoes na ordem: esquerda > direita de cima > baixo;
+		
+		pn.add(b1);
+		pn.add(b2);
+		pn.add(b3);
+		pn.add(bC);
+		
+		pn.add(b4);
+		pn.add(b5);
+		pn.add(b6);
+		pn.add(bmais);
+		
+		pn.add(b7);
+		pn.add(b8);
+		pn.add(b9);
+		pn.add(bmenos);
+		
+		pn.add(b0);
+		pn.add(bvezes);
+		pn.add(bdivi);
+		pn.add(bponto);
+		
+		
+	}
+
+}

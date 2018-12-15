@@ -1,0 +1,21 @@
+package Teste;
+
+import javax.swing.JFrame;
+
+import Cliente.Client;
+
+public class Teste_Cliente {
+
+	public static void main(String[] args) {
+
+	 	Client application;
+	 	
+	 	if(args.length == 0)
+	 		application = new Client ("192.168.56.1");
+	 	else 	
+	 		application = new Client (args [0]);
+	 	application.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	 	application.runClient();
+	}
+
+}

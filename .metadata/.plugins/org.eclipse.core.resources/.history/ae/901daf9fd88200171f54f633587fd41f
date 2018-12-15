@@ -1,0 +1,30 @@
+package Aps;
+
+// -------------------  Importaçoes
+
+import java.util.Scanner;
+
+
+// -------------------  Começo da clase
+
+public class Segunda {
+	
+	Scanner in = new Scanner(System.in);
+	
+// -------------------  Main
+	
+	public static void main (String[] args){
+		
+	Primeira n = new Primeira();		
+	
+	System.out.println("Oque deseja fazer?");  
+
+// -------------------  Criando o vetor 
+
+	n.Vetor();
+
+		
+	
+	
+	}
+}

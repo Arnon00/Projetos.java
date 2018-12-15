@@ -1,0 +1,70 @@
+package teste;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
+import javax.swing.JTextArea;
+import java.awt.Color;
+import java.awt.SystemColor;
+
+public class Onitsha extends JFrame {
+
+	private JPanel contentPane;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Onitsha frame = new Onitsha();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public Onitsha() {
+		setTitle("Onitsha - Nigeria");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JButton btnSobreACidade = new JButton("Sobre a cidade");
+		btnSobreACidade.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				SobreaCidade Sc = new SobreaCidade();
+				
+				Sc.setVisible(true);
+			}
+		});
+		btnSobreACidade.setBounds(10, 11, 122, 23);
+		contentPane.add(btnSobreACidade);
+		
+		JTextArea txtrAMaiorParte = new JTextArea();
+		txtrAMaiorParte.setBackground(SystemColor.controlHighlight);
+		txtrAMaiorParte.setEditable(false);
+		txtrAMaiorParte.setText("A maior parte da polui\u00E7\u00E3o do ar de Onitsha vem de nuvens de fuma\u00E7a de diesel emitidas de navios antigos ancorados nas docas da cidade. Sem um sistema apropriado de incinera\u00E7\u00E3o e com um dos maiores \u00EDndices de congestionamento urbano da Nig\u00E9ria, a qualidade do ar chegou a n\u00EDveis assustadores. Onitsha gera 600 microgramas de material particulado PM10s por metro c\u00FAbico, cerca de 30 vezes mais do que a recomenda\u00E7\u00E3o da OMS de 20mg por metro c\u00FAbico.");
+		txtrAMaiorParte.setLineWrap(true);
+		txtrAMaiorParte.setBounds(20, 45, 375, 206);
+		contentPane.add(txtrAMaiorParte);
+	}
+
+}

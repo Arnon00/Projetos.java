@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="CHTA SIMPLES/src"/>
+	<classpathentry exported="true" kind="lib" path="ChatSimples.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="E:/aps/CHAT SIMPLES/ChatSimples.jar"/>
+	<classpathentry kind="output" path="CHTA SIMPLES/bin"/>
+</classpath>

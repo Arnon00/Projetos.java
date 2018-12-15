@@ -1,0 +1,17 @@
+package chatsimples //pacote necessário para a importação ser realizada
+
+import javax.swing.JOptionPane; //
+
+public class Programa  //início da classa programa
+
+    public static void main(String[] args) { //método principal
+        String  ip = (String)JOptionPane.showInputDialog("Informe o IP","192.168.0."); //aqui você informa o IP da máquina que dejsa estabelecer comunicação
+        int porta = Integer.parseInt(JOptionPane.showInputDialog("Informe a Porta","5000")); //a porta que será utilizada
+
+        Conexao c = new Conexao(ip, porta); //conexão e seus atributos
+
+        JanelaChat j = new JanelaChat(c); //cria a janela de chat
+        j.setLocationRelativeTo(null);
+        j.setVisible(true); //deixa visível.
+    }
+}

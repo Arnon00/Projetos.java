@@ -1,0 +1,70 @@
+package teste;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
+import javax.swing.JTextArea;
+import java.awt.Color;
+import java.awt.SystemColor;
+
+public class Onitsha extends JFrame {
+
+	private JPanel contentPane;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Onitsha frame = new Onitsha();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public Onitsha() {
+		setTitle("Onitsha - Nigeria");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JButton btnSobreACidade = new JButton("Sobre a cidade");
+		btnSobreACidade.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Newnova Sc = new Newnova();
+				
+				Sc.setVisible(true);
+			}
+		});
+		btnSobreACidade.setBounds(20, 11, 122, 23);
+		contentPane.add(btnSobreACidade);
+		
+		JTextArea txtrAMaiorParte = new JTextArea();
+		txtrAMaiorParte.setBackground(SystemColor.controlHighlight);
+		txtrAMaiorParte.setEditable(false);
+		txtrAMaiorParte.setText("Tamanho :  36,19K\u00B2\r\nCria\u00E7\u00E3o : 1550\r\nContinente: Africano\r\nLocaliza\u00E7\u00E3o: 6.145, 6.788\r\nPopula\u00E7\u00E3o: 1109300 (2015) \r\nDensidade populacional:  5,030.8/km2\r\nPrefeito/Governante:  Obi  of Onitsha\r\nSobre o Pais.\r\n182,2 milh\u00F5es (2015)\r\nPIB do pais:  481,1 bilh\u00F5es USD (2015)\r\n");
+		txtrAMaiorParte.setLineWrap(true);
+		txtrAMaiorParte.setBounds(20, 45, 275, 206);
+		contentPane.add(txtrAMaiorParte);
+	}
+
+}

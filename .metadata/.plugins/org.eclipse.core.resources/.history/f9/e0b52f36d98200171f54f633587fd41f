@@ -1,0 +1,81 @@
+package Aps;
+// -------------------  Importações;
+import java.util.Random;
+import java.util.Scanner;
+//  -------------------  Classe;
+public class Primeira {
+// -------------------  Declaração, armazenar numeros;
+	int num;
+
+// -------------------  Get's & Set's;
+	
+	public void setNum(int n){
+		this.num = n;
+	}
+	public int getNum(){
+		return this.num;
+	}
+
+//  -------------------  instanciando criador aleatorio;
+	Random rad = new Random();
+
+//  -------------------  Metodo de criação;
+	
+public int gerador(){
+		
+		setNum(rad.nextInt(1000));
+		
+		return this.getNum();
+	}
+	
+// -------------------- Crindo o Vetor;
+
+public void Vetor(){
+	
+	Scanner in = new Scanner(System.in);
+	
+	int gat;
+	int val;
+	
+	System.out.println("Deseja criar um vetor especifico [1] ou usar o padrão? [2]");
+	gat = in.nextInt();
+	
+	if (gat == 1){
+
+		int vet [] = new int [1700000];
+				}if (gat == 2){
+
+					System.out.println("Digite o tamanho desejado");
+					val = in.nextInt();
+					int vet [] = new int [val];
+				}
+	
+
+	// -------------------  Instanciando a Primeira classe - Criação do numeros
+	// -------------------  Instanciando Entrada de dados
+			
+			Primeira p = new Primeira();
+			
+	// -------------------  Laço for		
+			for (int a = 0; a < vet.length; a++){
+	// -------------------  Segurança		
+			try{
+	// -------------------  Chamando o metodo gerador der numeros
+				vet[a] = p.gerador();
+	// -------------------  Inprimindo na tela posição e conteudo do vetor
+				
+				System.out.println("Posição: "+a+" Valor: "+vet[a]);
+				
+				
+	// -------------------  Tratamento		
+				}catch(Exception e){
+	//  ------------------- Menssagens 
+					System.out.println("algo deu errado na impressao do seu vetor.");
+					System.out.println(e);
+				}
+			}
+	// ------------------- Mensagem final com o tamanho do vetor.  		
+			System.out.println("\n Seu vetor de "+vet.length+" posições esta pronto");
+			
+     }
+}
